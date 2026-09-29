@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+
+  <!-- Grocery Bag / Store Shape -->
+  <g transform="translate(64, 56) scale(0.75)">
+    <!-- Bag Body -->
+    <path d="M72 176 L112 448 C114 466 130 480 148 480 L364 480 C382 480 398 466 400 448 L440 176 Z" fill="#ffffff" />
+    
+    <!-- Bag Handle -->
+    <path d="M176 176 C176 112 216 72 256 72 C296 72 336 112 336 176" fill="none" stroke="url(#gold)" stroke-width="28" stroke-linecap="round" />
+
+    <!-- Modern Grocery Leaf / Crest in Bag -->
+    <path d="M256 220 C220 250 200 290 200 330 C200 370 230 400 270 400 C310 400 330 360 330 320 C330 270 290 230 256 220 Z" fill="url(#accent)" />
+    
+    <!-- Bag Fold Highlight -->
+    <path d="M120 200 L392 200" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round" />
+    
+    <!-- Fresh Sparkles -->
+    <path d="M380 100 L390 125 L415 135 L390 145 L380 170 L370 145 L345 135 L370 125 Z" fill="url(#gold)" />
+    <circle cx="130" cy="130" r="14" fill="url(#gold)" />
+  </g>
+</svg>

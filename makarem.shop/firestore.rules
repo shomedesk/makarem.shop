@@ -1,0 +1,69 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      allow get: if isValidId(orderId);
+      allow list: if true;
+
+      allow create: if isValidId(orderId)
+        && request.resource.data.orderNumber is string
+        && request.resource.data.orderNumber.size() <= 64
+        && request.resource.data.orderType in ['curbside', 'neighborhood_delivery']
+        && request.resource.data.customerName is string
+        && request.resource.data.customerName.size() <= 100
+        && request.resource.data.customerPhone is string
+        && request.resource.data.customerPhone.size() <= 30
+        && request.resource.data.paymentMethod in ['cash', 'card', 'online']
+        && request.resource.data.status in ['pending', 'processing', 'ready', 'completed', 'cancelled']
+        && request.resource.data.totalAmount is number
+        && request.resource.data.totalAmount >= 0;
+
+      allow update: if isValidId(orderId)
+        && request.resource.data.orderNumber is string
+        && request.resource.data.status in ['pending', 'processing', 'ready', 'completed', 'cancelled']
+        && request.resource.data.paymentStatus in ['pending', 'received']
+        && request.resource.data.totalAmount is number;
+
+      allow delete: if isValidId(orderId);
+    }
+
+    // Customers Profile Collection (Phone, Vehicle, Saved Location)
+    match /customers/{customerId} {
+      allow get, list: if true;
+      allow write: if isValidId(customerId);
+    }
+
+    // Product custom media & overrides (Images uploaded by store owner)
+    match /product_media/{productId} {
+      allow get: if isValidId(productId);
+      allow list: if true;
+      allow write: if isValidId(productId);
+    }
+
+    // Store Inventory
+    match /inventory/{itemId} {
+      allow get: if isValidId(itemId);
+      allow list: if true;
+      allow write: if isValidId(itemId);
+    }
+
+    // Store Settings
+    match /store_settings/{settingId} {
+      allow get: if isValidId(settingId);
+      allow list: if true;
+      allow write: if isValidId(settingId);
+    }
+
+    // Connection testing collection
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+  }
+}
