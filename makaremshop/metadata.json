@@ -1,0 +1,6 @@
+{
+  "name": "Makarem Al-Khair Modern Grocery",
+  "description": "Hassle-free curbside vehicle pickup and neighborhood express order assistant for Makarem Al-Khair Modern Grocery with live order tracking and SalesPlay POS synchronization.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
